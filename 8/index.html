@@ -1,0 +1,20 @@
+<button id="gerar-contato">Gerar contato</button>
+<script>
+  const botao = document.getElementById('gerar-contato');
+
+  botao.onclick = () => { 
+    const request = fetch('script/json.php');
+
+    request.then((response) => {
+
+      return response.json().then((json) => {
+        json.items.forEach((items) => {
+          const div = document.createElement('div');
+          div.innerHTML = `Nome:  ${items.titulo}, subtitulo: ${items.subtitulo}, usuario: ${items.username} </br>`;
+          document.body.appendChild(div);
+        });
+      });
+    });
+  }
+
+</script>

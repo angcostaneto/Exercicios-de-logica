@@ -1,0 +1,70 @@
+<ul id="lista-pessoas">
+  <li>
+    <div>
+      <img src="Imagens/1.jpg">
+      <p>Nome: teste1</p>
+      <p>Telefone: 1234566789</p>
+      <p>Email: teste1@example.com</p>
+      <button class="remover">Remover</button>
+    </div>
+  </li>
+  <li>
+    <div>
+      <img src="Imagens/3.jpg">
+      <p>Nome: teste3</p>
+      <p>Telefone: 1234566789</p>
+      <p>Email: teste3@example.com</p>
+      <button class="remover">Remover</button>
+    </div>
+  </li>
+</ul>
+<button id="adicionar">Adicionar</button>
+
+<script>
+  const botoesDeletar = document.getElementsByClassName('remover');
+  const botaoAdicionar = document.getElementById('adicionar');
+
+  let deletarPessoa = (event) => {
+    event.target.closest('li').remove();
+  }
+
+  [...botoesDeletar].forEach((botao) => {
+    botao.onclick = deletarPessoa;
+  });
+
+  botaoAdicionar.onclick = () => {
+    // Gera um numero randomico.
+    const numeroRandomico = Math.floor(Math.random() * 4) + 1
+
+    const li = document.createElement('li');
+    const div = document.createElement('div');
+
+    const image = document.createElement('img');
+    image.setAttribute('src', `Imagens/${numeroRandomico}.jpg`);
+
+    const nome = document.createElement('p');
+    nome.innerHTML = `Nome: teste${numeroRandomico}`;
+
+    const telefone = document.createElement('p');
+    telefone.innerHTML = `Telefone: 123456789`;
+
+    const mail = document.createElement('p');
+    mail.innerHTML = `Email: teste${numeroRandomico}@example.com`;
+
+    const botao = document.createElement('button');
+    botao.classname = 'remover';
+    botao.innerHTML = "Remover";
+    botao.onclick = deletarPessoa;
+
+    div.append(image);
+    div.append(nome);
+    div.append(telefone);
+    div.append(mail);
+    div.append(botao);
+
+    li.append(div);
+
+    document.getElementById('lista-pessoas').appendChild(li);
+  };
+
+</script>
